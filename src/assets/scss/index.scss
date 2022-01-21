@@ -1,8 +1,9 @@
-@import "login";
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
-// @import "~bootstrap/scss/bootstrap";
+@import "login";
+@import "register";
+@import "home";
+@import "account";
 
 body {
   margin: 0;
@@ -16,4 +17,30 @@ body {
 code {
   font-family: "Poppins", source-code-pro, Menlo, Monaco, Consolas,
     "Courier New", monospace;
+}
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &.img-thumbnail {
+    padding: 4px;
+    max-width: none;
+  }
+
+  & > * {
+    height: 100%;
+    width: 100%;
+  }
 }

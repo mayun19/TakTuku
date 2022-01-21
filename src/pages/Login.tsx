@@ -1,5 +1,3 @@
-import React from "react";
-// import TextInput from "../components/TextInput";
 import { Form } from "react-bootstrap";
 import ImgModel from "../assets/images/Photo Login.png";
 import ImgLogo from "../assets/images/logo.svg";
