@@ -1,17 +1,25 @@
 import React from "react";
 
-const TextInput = (label: any, onChange: any, type: any) => {
-	return (
-		<div>
-			<div className="form-group mt-2">
-				<p style={{ fontWeight: "bold" }}>
-					{label}
-					<span className="input text-danger">*</span>
-				</p>
-				<input className="form-control" onChange={onChange} type={type} />
-			</div>
-		</div>
-	);
+type register = {
+  label: string;
+  type: any;
+  onChange: any;
 };
 
-export default TextInput;
+const TextInput = (register: register) => {
+  return (
+    <div className="form-group mt-3">
+      <p>
+        {register.label}
+        <span className="input text-danger">*</span>
+      </p>
+      <input
+        className="form-control"
+        type={register.type}
+        onChange={register.onChange}
+      />
+    </div>
+  );
+};
+
+export { TextInput };
