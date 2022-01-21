@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/images/logo.svg";
 
 const Navbar = () => {
-  const [isLoggedIn] = useState(true);
+  const [isLoggedIn] = useState(false);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
@@ -70,12 +70,12 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="nav-item mx-lg-4">
-                <NavLink className="nav-link" to="/">
+                <NavLink className="nav-link" to="/register">
                   Sign up
                 </NavLink>
               </li>
               <li className="nav-item py-2 py-lg-0">
-                <NavLink className="btn btn-success px-3" to="/">
+                <NavLink className="btn btn-success px-3" to="/login">
                   Sign in
                 </NavLink>
               </li>

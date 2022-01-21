@@ -2,7 +2,9 @@
 
 @import "login";
 @import "register";
-@import "home"; // @import "~bootstrap/scss/bootstrap";
+@import "home";
+@import "account";
+
 body {
   margin: 0;
   font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto",

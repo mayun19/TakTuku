@@ -2,7 +2,6 @@ import { NavLink, Outlet } from "react-router-dom";
 import { MdDashboard, MdLogout } from "react-icons/md";
 import { BsCardList, BsBasket3 } from "react-icons/bs";
 import { FaMapMarkerAlt, FaRegMoneyBillAlt, FaRegUser } from "react-icons/fa";
-import "../../assets/scss/account.scss";
 
 const Index = () => {
   return (
