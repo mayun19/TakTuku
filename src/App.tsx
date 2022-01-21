@@ -1,15 +1,15 @@
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import Home from "./pages";
+import { Outlet } from "react-router-dom";
+import Footer from "./components/footer";
+import Navbar from "./components/navbar";
 
 const App = () => {
-	return (
-		<div>
-			{/* <Register /> */}
-			{/* <Home /> */}
-			<Login />
-		</div>
-	);
+  return (
+    <div>
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </div>
+  );
 };
 
 export default App;
