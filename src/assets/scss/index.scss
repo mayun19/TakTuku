@@ -4,43 +4,44 @@
 @import "register";
 @import "home";
 @import "account";
+@import "product";
 
 body {
-  margin: 0;
-  font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto",
+		"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: "Poppins", source-code-pro, Menlo, Monaco, Consolas,
-    "Courier New", monospace;
+	font-family: "Poppins", source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
 }
 
 .avatar {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  vertical-align: middle;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: normal;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	vertical-align: middle;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: normal;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 
-  &.img-thumbnail {
-    padding: 4px;
-    max-width: none;
-  }
+	&.img-thumbnail {
+		padding: 4px;
+		max-width: none;
+	}
 
-  & > * {
-    height: 100%;
-    width: 100%;
-  }
+	& > * {
+		height: 100%;
+		width: 100%;
+	}
 }

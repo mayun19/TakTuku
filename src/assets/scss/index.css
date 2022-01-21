@@ -220,17 +220,128 @@
   }
 }
 
+#banner {
+  background-image: url("../images/banner.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.react-bootstrap-table-pagination {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.detail-product {
+  font-family: "Poppins" !important;
+  color: #0c0d36 !important;
+  min-height: 95vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.detail-product .breadcrumb-item {
+  font-size: 16px;
+}
+
+.detail-product .breadcrumb-item a {
+  color: #979797 !important;
+  font-weight: 300;
+}
+
+.detail-product .breadcrumb-item .active {
+  font-weight: 500;
+}
+
+.detail-product .product-item img {
+  width: 100%;
+  height: 60vh;
+  background-size: cover;
+}
+
+.detail-product .card .seller {
+  color: #979797;
+  font-size: 14px;
+}
+
+.detail-product .card .price {
+  font-size: 24px;
+  color: #ff7158;
+}
+
+.detail-product .card .stock {
+  font-weight: 500;
+  font-size: 18px;
+  color: #979797;
+}
+
+.detail-product .card .btn {
+  border-radius: 6px;
+}
+
+.detail-product .card .btn-cart {
+  font-weight: 500;
+  color: #f3f3f3;
+  background-color: #29a867;
+}
+
+.detail-product .card .btn-cart:hover {
+  background-color: rgba(41, 168, 102, 0.836);
+  color: #f3f3f3;
+}
+
+.detail-product .card .btn-co {
+  color: #28a745;
+  background-color: #f3f3f3;
+  font-weight: 500;
+  border: 1px solid #29a867;
+}
+
+.detail-product .card .btn-co:hover {
+  border: none;
+  color: #f3f3f3;
+  background-color: #979797;
+}
+
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto",
- "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
- sans-serif;
+  font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: "Poppins", source-code-pro, Menlo, Monaco, Consolas, "Courier New",
- monospace;
+  font-family: "Poppins", source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.avatar {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.avatar.img-thumbnail {
+  padding: 4px;
+  max-width: none;
+}
+
+.avatar > * {
+  height: 100%;
+  width: 100%;
 }
 /*# sourceMappingURL=index.css.map */
