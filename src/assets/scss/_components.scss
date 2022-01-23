@@ -1,0 +1,34 @@
+.btn {
+	border-radius: 6px !important;
+}
+
+button.btn-save {
+	color: #29a867 !important;
+	font-family: Poppins;
+	font-size: 16px;
+	font-weight: 500;
+	background: #ffffff;
+	border: 1px solid #29a867;
+	box-sizing: border-box;
+
+	&:hover {
+		background-color: #29a867;
+		color: #ffffff !important;
+		border: 1px solid #c4c4c4;
+	}
+}
+
+input.form-control,
+.form-select, textarea.form-control {
+	font-family: "Poppins";
+	color: #bbbbbb;
+	background-color: #f3f3f3;
+	border: 1px solid #ffffff;
+	border-radius: 8px !important;
+}
+
+.form-label {
+	font-family: Poppins;
+	font-size: 16px;
+	color: #0c0d36;
+}

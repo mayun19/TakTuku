@@ -4,6 +4,8 @@ type register = {
 	label: string;
 	type: any;
 	onChange: any;
+	placeholder?: any;
+	value?: string;
 };
 
 const TextInput = (register: register) => {
@@ -22,4 +24,19 @@ const TextInput = (register: register) => {
 	);
 };
 
-export { TextInput };
+const TextInputAccount = (register: register) => {
+	return (
+		<div className="form-group mt-3">
+			<p className="mb-1 form-label">{register.label}</p>
+			<input
+				className="form-control"
+				type={register.type}
+				onChange={register.onChange}
+				placeholder={register.placeholder}
+				value={register.value}
+			/>
+		</div>
+	);
+};
+
+export { TextInput, TextInputAccount };

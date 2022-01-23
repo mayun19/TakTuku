@@ -302,6 +302,42 @@
   background-color: #979797;
 }
 
+.btn {
+  border-radius: 6px !important;
+}
+
+button.btn-save {
+  color: #29a867 !important;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  background: #ffffff;
+  border: 1px solid #29a867;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+button.btn-save:hover {
+  background-color: #29a867;
+  color: #ffffff !important;
+  border: 1px solid #c4c4c4;
+}
+
+input.form-control,
+.form-select, textarea.form-control {
+  font-family: "Poppins";
+  color: #bbbbbb;
+  background-color: #f3f3f3;
+  border: 1px solid #ffffff;
+  border-radius: 8px !important;
+}
+
+.form-label {
+  font-family: Poppins;
+  font-size: 16px;
+  color: #0c0d36;
+}
+
 body {
   margin: 0;
   font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
