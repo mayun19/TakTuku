@@ -5,39 +5,39 @@ import Account from "../pages/account";
 import Dashboard from "../pages/account/dashboard";
 import Transaction from "../pages/account/transaction";
 import Detail from "../pages/account/transaction/detail";
-import Login from "../pages/login";
-import Register from "../pages/register";
-import ProductDetail from "../pages/ProductDetail";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import ProductDetail from "../pages/product/detail";
 import DetailAccount from "../pages/account/detail";
 import Address from "../pages/account/address";
-import Product from "../pages/account/product";
-import ProductUpdate from "../pages/account/product/update";
-import CreateProduct from "../pages/account/product/create";
+import Product from "../pages/account/my_product";
+import ProductUpdate from "../pages/account/my_product/update";
+import CreateProduct from "../pages/account/my_product/create";
 
 const Index = () => {
-	return (
-		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<App />}>
-					<Route index element={<Home />} />
-					<Route path="product" element={<ProductDetail />} />
-					<Route path="account" element={<Account />}>
-						<Route index element={<Navigate to="dashboard" />} />
-						<Route path="dashboard" element={<Dashboard />} />
-						<Route path="userid" element={<DetailAccount />} />
-						<Route path="transaction" element={<Transaction />} />
-						<Route path="transaction/:id" element={<Detail />} />
-						<Route path="address" element={<Address />} />
-						<Route path="product" element={<Product />} />
-						<Route path="product/create" element={<CreateProduct />} />
-						<Route path="product/update" element={<ProductUpdate />} />
-					</Route>
-				</Route>
-				<Route path="/login" element={<Login />} />
-				<Route path="/register" element={<Register />} />
-			</Routes>
-		</BrowserRouter>
-	);
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<Home />} />
+          <Route path="product/:id" element={<ProductDetail />} />
+          <Route path="account" element={<Account />}>
+            <Route index element={<Navigate to="dashboard" />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="userid" element={<DetailAccount />} />
+            <Route path="transaction" element={<Transaction />} />
+            <Route path="transaction/:id" element={<Detail />} />
+            <Route path="address" element={<Address />} />
+            <Route path="product" element={<Product />} />
+            <Route path="product/create" element={<CreateProduct />} />
+            <Route path="product/update" element={<ProductUpdate />} />
+          </Route>
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default Index;
