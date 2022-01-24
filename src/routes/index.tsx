@@ -38,8 +38,12 @@ const Index = () => {
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
+            <Route path="product" element={<Navigate to="/" />} />
             <Route path="product/:id" element={<ProductDetail />} />
-            <Route path="account" element={<Account />}>
+            <Route
+              path="account"
+              element={isLoggedIn ? <Account /> : <Navigate to="/" />}
+            >
               <Route index element={<Navigate to="dashboard" />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="userid" element={<DetailAccount />} />
@@ -50,15 +54,15 @@ const Index = () => {
               <Route path="product/create" element={<CreateProduct />} />
               <Route path="product/update" element={<ProductUpdate />} />
             </Route>
-            <Route
-              path="/login"
-              element={isLoggedIn ? <Navigate to="/" /> : <Login />}
-            />
-            <Route
-              path="/register"
-              element={isLoggedIn ? <Navigate to="/" /> : <Register />}
-            />
           </Route>
+          <Route
+            path="/login"
+            element={isLoggedIn ? <Navigate to="/" /> : <Login />}
+          />
+          <Route
+            path="/register"
+            element={isLoggedIn ? <Navigate to="/" /> : <Register />}
+          />
         </Routes>
       </ScrollToTop>
     </BrowserRouter>
