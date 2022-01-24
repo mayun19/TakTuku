@@ -42,9 +42,12 @@ const Index = () => {
 							>
 								<MdDashboard className="mb-1 me-2" /> Dashboard
 							</NavLink>
-							<a href="/" className="list-group-item list-group-item-action">
+							<NavLink
+								to="/account/cart"
+								className="list-group-item list-group-item-action"
+							>
 								<BsBasket3 className="mb-1 me-2" /> Shopping Cart
-							</a>
+							</NavLink>
 							<NavLink
 								to="/account/product/"
 								className="list-group-item list-group-item-action"

@@ -19,6 +19,7 @@ import Address from "../pages/account/address";
 import Product from "../pages/account/my_product";
 import ProductUpdate from "../pages/account/my_product/update";
 import CreateProduct from "../pages/account/my_product/create";
+import Cart from "../pages/account/cart";
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ const Index = () => {
               <Route path="product" element={<Product />} />
               <Route path="product/create" element={<CreateProduct />} />
               <Route path="product/update" element={<ProductUpdate />} />
+              <Route path="cart" element={<Cart />} />
             </Route>
           </Route>
           <Route
