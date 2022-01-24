@@ -8,7 +8,8 @@
         "_home.scss",
         "_account.scss",
         "_product.scss",
-        "_components.scss"
+        "_components.scss",
+        "_success.scss"
     ],
     "names": [],
     "file": "index.css"

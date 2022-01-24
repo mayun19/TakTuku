@@ -306,21 +306,38 @@
   border-radius: 6px !important;
 }
 
-button.btn-save {
+button.btn-save,
+.btn-save {
   color: #29a867 !important;
   font-family: Poppins;
   font-size: 16px;
   font-weight: 500;
   background: #ffffff;
-  border: 1px solid #29a867;
+  border: 1px solid #29a867 !important;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-button.btn-save:hover {
+button.btn-save:hover,
+.btn-save:hover {
   background-color: #29a867;
   color: #ffffff !important;
   border: 1px solid #c4c4c4;
+}
+
+.btn-shop {
+  font-family: Poppins !important;
+  font-size: 16px !important;
+  color: #0c0d36 !important;
+  background: #f3f3f3 !important;
+  border: 1px solid #0c0d36 !important;
+  font-weight: 500 !important;
+}
+
+.btn-shop:hover {
+  border: none !important;
+  color: #f3f3f3 !important;
+  background-color: #979797 !important;
 }
 
 input.form-control,
@@ -337,6 +354,23 @@ textarea.form-control {
   font-family: Poppins;
   font-size: 16px;
   color: #0c0d36;
+}
+
+.total h5 {
+  color: #29a867 !important;
+}
+
+.success {
+  font-family: "Poppins" !important;
+  color: #525252;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.success h3 {
+  color: #0c0d36;
+  font-size: 36px;
+  font-weight: 500;
 }
 
 .qt {
@@ -376,13 +410,16 @@ textarea.form-control {
 
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: "Poppins", source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: "Poppins", source-code-pro, Menlo, Monaco, Consolas,
+    "Courier New", monospace;
 }
 
 .avatar {
@@ -391,11 +428,11 @@ code {
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   vertical-align: middle;
   margin: 0;
   padding: 0;
