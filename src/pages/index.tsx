@@ -1,8 +1,101 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import ImgProd1 from "../assets/images/pic1.png";
 
+type item = {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  id_category: number;
+};
+
 const Home = () => {
   document.title = "TakTuku - Home ";
+  const [product, setProduct] = useState<any>([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    await axios
+      .get("/products")
+      .then((res) => {
+        const { data } = res;
+        setProduct(data);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const fetchWomen = async () => {
+    await axios
+      .get("/products")
+      .then((res) => {
+        const { data } = res;
+        const searchRegex = new RegExp(/[1]/g);
+        const filterRows = data.filter(function (el: any) {
+          return searchRegex.test(el.id_category);
+        });
+        setProduct(filterRows);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const fetchMen = async () => {
+    await axios
+      .get("/products")
+      .then((res) => {
+        const { data } = res;
+        const searchRegex = new RegExp(/[2]/g);
+        const filterRows = data.filter(function (el: any) {
+          return searchRegex.test(el.id_category);
+        });
+        setProduct(filterRows);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const fetchKid = async () => {
+    await axios
+      .get("/products")
+      .then((res) => {
+        const { data } = res;
+        const searchRegex = new RegExp(/[3]/g);
+        const filterRows = data.filter(function (el: any) {
+          return searchRegex.test(el.id_category);
+        });
+        setProduct(filterRows);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const thousandSeparator = (amount: number) => {
+    if (
+      amount !== undefined ||
+      amount !== 0 ||
+      amount !== "0" ||
+      amount !== null
+    ) {
+      return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    } else {
+      return amount;
+    }
+  };
+
   return (
     <div className="home">
       <div className="container mt-5">
@@ -13,89 +106,43 @@ const Home = () => {
             </h1>
             <p className="banner-desc">Find what you need here</p>
           </div>
-          {/* <img src={ImgBanner} alt="" /> */}
         </div>
         <div className="row category mt-5">
           <ul className="navbar-nav d-flex flex-row justify-content-center">
             <li className="nav-item mx-4">
-              <a className="nav-link active" aria-current="page" href="/">
+              <button className="btn" onClick={fetchData}>
                 All
-              </a>
+              </button>
             </li>
             <li className="nav-item mx-4">
-              <a className="nav-link" href="/">
+              <button className="btn" onClick={fetchWomen}>
                 Women
-              </a>
+              </button>
             </li>
             <li className="nav-item mx-4">
-              <a className="nav-link" href="/">
+              <button className="btn" onClick={fetchMen}>
                 Men
-              </a>
+              </button>
             </li>
             <li className="nav-item mx-4">
-              <a className="nav-link" href="/">
+              <button className="btn" onClick={fetchKid}>
                 Kids
-              </a>
+              </button>
             </li>
           </ul>
         </div>
         <div className="row product-list mt-5 justify-content-center">
-          <div className="col-11 col-md-4 col-lg-3 mt-2">
-            <div className="row product-item">
-              <img className="rounded-3" src={ImgProd1} alt="" />
-              <h5 className="produc-name mt-3">Sofa Ternyaman</h5>
-              <p className="product-price">RP 1.409.000</p>
+          {product.map((item: item) => (
+            <div key={item.id} className="col-11 col-md-4 col-lg-3 mt-2">
+              <div className="row product-item">
+                <img className="rounded-3" src={ImgProd1} alt="product" />
+                <h5 className="produc-name mt-3">{item.name}</h5>
+                <p className="product-price">{`Rp. ${thousandSeparator(
+                  item.price
+                )}`}</p>
+              </div>
             </div>
-          </div>
-          <div className="col-11 col-md-4 col-lg-3 mt-2">
-            <div className="row product-item">
-              <img className="rounded-3" src={ImgProd1} alt="" />
-              <h5 className="produc-name mt-3">Sofa Ternyaman</h5>
-              <p className="product-price">RP 1.409.000</p>
-            </div>
-          </div>
-          <div className="col-11 col-md-4 col-lg-3 mt-2">
-            <div className="row product-item">
-              <img className="rounded-3" src={ImgProd1} alt="" />
-              <h5 className="produc-name mt-3">Sofa Ternyaman</h5>
-              <p className="product-price">RP 1.409.000</p>
-            </div>
-          </div>
-          <div className="col-11 col-md-4 col-lg-3 mt-2">
-            <div className="row product-item">
-              <img className="rounded-3" src={ImgProd1} alt="" />
-              <h5 className="produc-name mt-3">Sofa Ternyaman</h5>
-              <p className="product-price">RP 1.409.000</p>
-            </div>
-          </div>
-          <div className="col-11 col-md-4 col-lg-3 mt-2">
-            <div className="row product-item">
-              <img className="rounded-3" src={ImgProd1} alt="" />
-              <h5 className="produc-name mt-3">Sofa Ternyaman</h5>
-              <p className="product-price">RP 1.409.000</p>
-            </div>
-          </div>
-          <div className="col-11 col-md-4 col-lg-3 mt-2">
-            <div className="row product-item">
-              <img className="rounded-3" src={ImgProd1} alt="" />
-              <h5 className="produc-name mt-3">Sofa Ternyaman</h5>
-              <p className="product-price">RP 1.409.000</p>
-            </div>
-          </div>
-          <div className="col-11 col-md-4 col-lg-3 mt-2">
-            <div className="row product-item">
-              <img className="rounded-3" src={ImgProd1} alt="" />
-              <h5 className="produc-name mt-3">Sofa Ternyaman</h5>
-              <p className="product-price">RP 1.409.000</p>
-            </div>
-          </div>
-          <div className="col-11 col-md-4 col-lg-3 mt-2">
-            <div className="row product-item">
-              <img className="rounded-3" src={ImgProd1} alt="" />
-              <h5 className="produc-name mt-3">Sofa Ternyaman</h5>
-              <p className="product-price">RP 1.409.000</p>
-            </div>
-          </div>
+          ))}
         </div>
         <div className="row pages justify-content-end my-4">
           <div className="col-12 col-md-2 col-lg-2 d-flex align-items-center justify-content-center">

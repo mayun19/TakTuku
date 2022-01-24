@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { IoMdBasket } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images/logo.svg";
+import { useSelector } from "react-redux";
+import { RootState } from "../stores/reducers/reducer";
+import { BsBasket3Fill } from "react-icons/bs";
 
 const Navbar = () => {
-  const [isLoggedIn] = useState(false);
+  const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
@@ -39,7 +40,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item mx-lg-4">
                 <NavLink className="nav-link d-none d-lg-block" to="/">
-                  <IoMdBasket className="fs-3 text-dark" />
+                  <BsBasket3Fill className="fs-4 text-dark" />
                 </NavLink>
                 <NavLink className="nav-link d-block d-lg-none" to="/">
                   Shopping Card

@@ -7,10 +7,18 @@ import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
 import Routes from "./routes";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import { store } from "./stores";
+import axios from "axios";
+
+// initialize axios
+axios.defaults.baseURL = "http://108.136.165.146:8080";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Routes />
+    <Provider store={store}>
+      <Routes />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
