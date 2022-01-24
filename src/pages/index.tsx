@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 import ImgProd1 from "../assets/images/pic1.png";
 
 type item = {
@@ -14,6 +15,7 @@ type item = {
 const Home = () => {
   document.title = "TakTuku - Home ";
   const [product, setProduct] = useState<any>([]);
+  const Navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
@@ -25,7 +27,6 @@ const Home = () => {
       .then((res) => {
         const { data } = res;
         setProduct(data);
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -42,7 +43,6 @@ const Home = () => {
           return searchRegex.test(el.id_category);
         });
         setProduct(filterRows);
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -59,7 +59,6 @@ const Home = () => {
           return searchRegex.test(el.id_category);
         });
         setProduct(filterRows);
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -76,11 +75,14 @@ const Home = () => {
           return searchRegex.test(el.id_category);
         });
         setProduct(filterRows);
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const handleDetail = (item: item) => {
+    Navigate(`/product/${item.id}`);
   };
 
   const thousandSeparator = (amount: number) => {
@@ -136,7 +138,13 @@ const Home = () => {
             <div key={item.id} className="col-11 col-md-4 col-lg-3 mt-2">
               <div className="row product-item">
                 <img className="rounded-3" src={ImgProd1} alt="product" />
-                <h5 className="produc-name mt-3">{item.name}</h5>
+                <h5
+                  className="produc-name mt-3"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleDetail(item)}
+                >
+                  {item.name}
+                </h5>
                 <p className="product-price">{`Rp. ${thousandSeparator(
                   item.price
                 )}`}</p>

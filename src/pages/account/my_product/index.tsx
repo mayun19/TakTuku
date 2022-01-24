@@ -1,11 +1,44 @@
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
 import { NavLink } from "react-router-dom";
-import { BiEditAlt } from "react-icons/bi";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import DataTable from "react-data-table-component";
 
 const Product = () => {
   document.title = "TakTuku - My Product ";
+  const [products, setProducts] = useState<object[]>([]);
+  const [pending, setPending] = useState(true);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    setPending(true);
+    await axios
+      .get("/products/myproduct")
+      .then((res) => {
+        const { data } = res;
+        setProducts(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => setPending(false));
+  };
+
+  const handleDelete = async (item: number) => {
+    setPending(true);
+    await axios
+      .delete(`/products/${item}`)
+      .then((res) => {
+        fetchData();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const ThousandSeparator = (amount: number) => {
     if (
       amount !== undefined ||
@@ -19,58 +52,46 @@ const Product = () => {
     }
   };
 
-  const PriceCell = (cell: any) => {
-    return <p className="m-0">Rp. {ThousandSeparator(cell)}</p>;
-  };
-
-  const IdCell = (cell: any) => {
-    return (
-      <NavLink
-        className="text-decoration-none text-dark"
-        to={`/account/transaction/${cell}`}
-      >
-        {cell}
-      </NavLink>
-    );
-  };
-
-  const products = [
-    { id: 1, name: "Sofa ternyaman", price: 101000, quantity: 100 },
-    { id: 2, name: "Apple Watch 4", price: 890000, quantity: 8 },
-    { id: 3, name: "Mavic Kawe", price: 5030000, quantity: 4 },
-  ];
   const columns = [
     {
-      dataField: "name",
-      text: "PRODUCT",
-      formatter: IdCell,
+      selector: (row: any) => row.id,
+      name: "#ID",
+      format: (row: any) => (
+        <NavLink
+          className="text-decoration-none text-dark"
+          to={`/product/${row.id}`}
+        >
+          {row.id}
+        </NavLink>
+      ),
     },
     {
-      dataField: "price",
-      text: "PRICE",
-      sort: true,
-      formatter: PriceCell,
+      selector: (row: any) => row.name,
+      name: "PRODUCT",
     },
     {
-      dataField: "quantity",
-      text: "QUANTITY",
-      sort: true,
+      selector: (row: any) => row.price,
+      name: "PRICE",
+      sortable: true,
+      format: (row: any) => (
+        <p className="m-0">Rp. {ThousandSeparator(row.price)}</p>
+      ),
     },
     {
-      dataField: "link",
-      text: "ACTION",
-      formatter: (rowContent: any, row: any) => {
-        return (
-          <div>
-            <NavLink to={"detail/" + row.id}>
-              <BiEditAlt className="text-dark me-2" size={24} />
-            </NavLink>
-            <NavLink to={"delete/" + row.id}>
-              <RiDeleteBinLine className="text-dark me-2" size={24} />
-            </NavLink>
-          </div>
-        );
-      },
+      selector: (row: any) => row.quantity,
+      name: "QUANTITY",
+      sortable: true,
+    },
+    {
+      name: "ACTION",
+      cell: (row: any) => (
+        <RiDeleteBinLine
+          className="text-dark me-2"
+          size={24}
+          style={{ cursor: "pointer" }}
+          onClick={() => handleDelete(row.id)}
+        />
+      ),
     },
   ];
 
@@ -80,8 +101,8 @@ const Product = () => {
         <div className="col">
           <div className="border rounded">
             <div className="p-4 d-flex align-items-center">
-              <h5 className="flex-grow-1">My Product</h5>
-              <div className="p-4">
+              <h5 className="flex-grow-1 m-0">My Product</h5>
+              <div className="me-4">
                 <NavLink
                   to="/account/product/create"
                   className="btn btn-success"
@@ -91,18 +112,11 @@ const Product = () => {
               </div>
               <div className="row flex-row"></div>
             </div>
-            <BootstrapTable
-              bootstrap4
-              classes="border-white text-center"
-              rowClasses="border-bottom"
-              keyField="id"
+            <DataTable
               data={products}
               columns={columns}
-              pagination={paginationFactory({
-                sizePerPage: 10,
-                paginationSize: 3,
-                alwaysShowAllBtns: true,
-              })}
+              progressPending={pending}
+              pagination
             />
           </div>
         </div>

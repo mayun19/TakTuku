@@ -37,41 +37,41 @@ const Index = () => {
           <div className="col-lg-3 ps-0">
             <div className="list-group fs-5">
               <NavLink
-								to="/account/dashboard"
-								className="list-group-item list-group-item-action"
-							>
-								<MdDashboard className="mb-1 me-2" /> Dashboard
-							</NavLink>
-							<NavLink
-								to="/account/cart"
-								className="list-group-item list-group-item-action"
-							>
-								<BsBasket3 className="mb-1 me-2" /> Shopping Cart
-							</NavLink>
-							<NavLink
-								to="/account/product/"
-								className="list-group-item list-group-item-action"
-							>
-								<BsCardList className="mb-1 me-2" /> My Product
-							</NavLink>
-							<NavLink
-								to="/account/transaction"
-								className="list-group-item list-group-item-action"
-							>
-								<FaRegMoneyBillAlt className="mb-1 me-2" /> Transaction
-							</NavLink>
-							<NavLink
-								to="/account/userid"
-								className="list-group-item list-group-item-action"
-							>
-								<FaRegUser className="mb-1 me-2" /> Account Detail
-							</NavLink>
-							<NavLink
-								to="/account/address"
-								className="list-group-item list-group-item-action"
-							>
-								<FaMapMarkerAlt className="mb-1 me-2" /> Address
-							</NavLink>
+                to="/account/dashboard"
+                className="list-group-item list-group-item-action"
+              >
+                <MdDashboard className="mb-1 me-2" /> Dashboard
+              </NavLink>
+              <NavLink
+                to="/account/cart"
+                className="list-group-item list-group-item-action"
+              >
+                <BsBasket3 className="mb-1 me-2" /> Shopping Cart
+              </NavLink>
+              <NavLink
+                to="/account/product"
+                className="list-group-item list-group-item-action"
+              >
+                <BsCardList className="mb-1 me-2" /> My Product
+              </NavLink>
+              <NavLink
+                to="/account/transaction"
+                className="list-group-item list-group-item-action"
+              >
+                <FaRegMoneyBillAlt className="mb-1 me-2" /> Transaction
+              </NavLink>
+              <NavLink
+                to="/account/userid"
+                className="list-group-item list-group-item-action"
+              >
+                <FaRegUser className="mb-1 me-2" /> Account Detail
+              </NavLink>
+              <NavLink
+                to="/account/address"
+                className="list-group-item list-group-item-action"
+              >
+                <FaMapMarkerAlt className="mb-1 me-2" /> Address
+              </NavLink>
               <NavLink
                 to="/"
                 className="list-group-item list-group-item-action"
