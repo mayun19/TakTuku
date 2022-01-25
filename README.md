@@ -28,6 +28,7 @@ Access our site at https://Taktuku.com
 - React Redux
 - Axios
 - SweetAlert2
+- SCSS
 
 **Prototype:** [Figma](https://www.figma.com/file/apXlAAgloIs3ihTNragJEy/E-Commerce-TakTuku-Sirclo?node-id=0%3A1)
 
