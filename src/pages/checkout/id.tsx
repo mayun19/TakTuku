@@ -1,12 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { TextInputAccount } from "../../components/TextInput";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
 const Checkout = (props: any) => {
   document.title = "TakTuku - Checkout Cart ";
-  const [products, setProducts] = useState<object[]>([]);
-  const [total, setTotal] = useState(0);
+  const [products, setProducts] = useState<any>({});
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -18,29 +18,18 @@ const Checkout = (props: any) => {
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const Navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
     fetchData();
-    console.log(props.checkout);
   }, []);
 
   const fetchData = async () => {
     await axios
-      .get("/carts")
+      .get(`/products/${id}`)
       .then((res) => {
         const { data } = res;
-        const temp: any = [];
-        data.map((item: any) => {
-          if (props.checkout.includes(item.id)) {
-            temp.push(item);
-          }
-        });
-        setProducts(temp);
-        setTotal(
-          temp
-            .map((item: any) => item.sub_total)
-            .reduce((prev: any, next: any) => prev + next)
-        );
+        setProducts(data);
       })
       .catch((err) => {
         console.log(err);
@@ -54,7 +43,8 @@ const Checkout = (props: any) => {
   const handleSubmit = async (e: FormEvent<HTMLElement>) => {
     e.preventDefault();
     await createOrder({
-      id_cart: products.map((item: any) => item.id),
+      id_product: Number(id),
+      quantity: props.quantity,
       address: {
         street: street,
         city: city,
@@ -74,19 +64,9 @@ const Checkout = (props: any) => {
 
   const createOrder = async (body: any) => {
     await axios
-      .post(`/order/cart`, body)
+      .post(`/order/product`, body)
       .then((res) => {
         Navigate("/success");
-        products.map(async (item: any) => {
-          await axios
-            .delete(`/carts/${item.id}`)
-            .then((res) => {
-              console.log(res);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        });
       })
       .catch((err) => {
         console.log(err);
@@ -254,42 +234,27 @@ const Checkout = (props: any) => {
           <div className="col-lg-4 mt-3 mt-lg-0">
             <div className="card card-right px-2 py-4 p-lg-4">
               <h5 className="product-name mb-3">Order Summary</h5>
-              {products ? (
-                products.map((item: any) => (
-                  <div
-                    key={item.id}
-                    className="cart d-flex justify-content-between"
-                  >
-                    <div className="item-product">
-                      <h6
-                        className="sub"
-                        style={{ textTransform: "capitalize" }}
-                      >
-                        {item.product.name}
-                      </h6>
-                    </div>
-                    <p>{item.quantity}</p>
-                    <h6 className="subprice">
-                      Rp {ThousandSeparator(item.sub_total)}
-                    </h6>
-                  </div>
-                ))
-              ) : (
-                <div className="cart d-flex justify-content-between">
-                  <div className="item-product">
-                    <h6 className="sub">Sofa Ternyaman</h6>
-                  </div>
-                  <p>0</p>
-                  <h6 className="subprice">Rp 0</h6>
+              <div className="cart d-flex justify-content-between">
+                <div className="item-product">
+                  <h6 className="sub" style={{ textTransform: "capitalize" }}>
+                    {products.name}
+                  </h6>
                 </div>
-              )}
+                <p>{props.quantity}</p>
+                <h6 className="subprice">
+                  Rp {ThousandSeparator(Number(products.price))}
+                </h6>
+              </div>
               <div className="cart d-flex justify-content-between">
                 <p className="sub">Shipping Price</p>
                 <p className="subprice">Free</p>
               </div>
               <div className="total d-flex justify-content-between">
                 <p className="total">Total Price</p>
-                <h5 className="total">Rp {ThousandSeparator(total)}</h5>
+                <h5 className="total">
+                  Rp{" "}
+                  {ThousandSeparator(Number(products.price) * props.quantity)}
+                </h5>
               </div>
             </div>
           </div>

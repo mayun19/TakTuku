@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import App from "../App";
@@ -23,10 +23,19 @@ import axios from "axios";
 import Cart from "../pages/account/cart";
 import Success from "../pages/checkout/success";
 import Checkout from "../pages/checkout";
+import CheckoutProduct from "../pages/checkout/id";
 
 const Index = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn);
+  const [checkout, setCheckout] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const data = (data: any) => {
+    setCheckout(data);
+  };
+  const dataQuantity = (data: any) => {
+    setQuantity(data);
+  };
 
   useEffect(() => {
     const tokenString = localStorage.getItem("token");
@@ -46,7 +55,10 @@ const Index = () => {
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
             <Route path="product" element={<Navigate to="/" />} />
-            <Route path="product/:id" element={<ProductDetail />} />
+            <Route
+              path="product/:id"
+              element={<ProductDetail quantity={dataQuantity} />}
+            />
             <Route
               path="account"
               element={isLoggedIn ? <Account /> : <Navigate to="/" />}
@@ -60,9 +72,13 @@ const Index = () => {
               <Route path="product" element={<Product />} />
               <Route path="product/create" element={<CreateProduct />} />
               <Route path="product/update" element={<ProductUpdate />} />
-              <Route path="cart" element={<Cart />} />
+              <Route path="cart" element={<Cart checkout={data} />} />
             </Route>
-            <Route path="checkout" element={<Checkout />} />
+            <Route path="checkout" element={<Checkout checkout={checkout} />} />
+            <Route
+              path="checkout/:id"
+              element={<CheckoutProduct quantity={quantity} />}
+            />
           </Route>
           <Route path="success" element={<Success />} />
           <Route

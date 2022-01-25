@@ -1,174 +1,189 @@
-import React from "react";
-
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import { NavLink } from "react-router-dom";
+/* eslint-disable react-hooks/exhaustive-deps */
 import { RiDeleteBinLine } from "react-icons/ri";
-import { FiMinus, FiPlus } from "react-icons/fi";
+import DataTable from "react-data-table-component";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const Cart = () => {
-	document.title = "TakTuku - Shopping Cart ";
+const Cart = (props: any) => {
+  document.title = "TakTuku - Shopping Cart ";
+  const [products, setProducts] = useState<object[]>([]);
+  const [checkout, setCheckout] = useState<number[]>([]);
+  const [total, setTotal] = useState(0);
+  const [pending, setPending] = useState(true);
+  const Navigate = useNavigate();
 
-	const ThousandSeparator = (amount: number) => {
-		if (
-			amount !== undefined ||
-			amount !== 0 ||
-			amount !== "0" ||
-			amount !== null
-		) {
-			return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-		} else {
-			return amount;
-		}
-	};
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-	const PriceCell = (cell: any) => {
-		return <p className="m-0">Rp. {ThousandSeparator(cell)}</p>;
-	};
+  const fetchData = async () => {
+    setPending(true);
+    await axios
+      .get("/carts")
+      .then((res) => {
+        const { data } = res;
+        if(data!=null){
+          setProducts(data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => setPending(false));
+  };
 
-	const IdCell = (cell: any) => {
-		return (
-			<NavLink
-				className="text-decoration-none text-dark"
-				to={`/account/transaction/${cell}`}
-			>
-				{cell}
-			</NavLink>
-		);
-	};
+  const handleDelete = async (item: number) => {
+    setPending(true);
+    await axios
+      .delete(`/carts/${item}`)
+      .then((res) => {
+        fetchData();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-	const CountCell = (cell: any) => {
-		return (
-			<div className="d-flex qt align-items-center justify-content-between">
-				<button>
-					<FiMinus />
-				</button>
-				<div className="count">{cell}</div>
-				<button>
-					<FiPlus />
-				</button>
-			</div>
-		);
-	};
+  const handleTotal = (e: any, sub_total: number, id: number) => {
+    const checked = e.target.checked;
+    if (checked) {
+      setTotal(total + sub_total);
+      const temp = checkout;
+      temp.push(id);
+      setCheckout(temp);
+    } else {
+      setTotal(total - sub_total);
+      const temp = checkout;
+      temp.splice(temp.indexOf(id), 1);
+      setCheckout(temp);
+    }
+  };
 
-	const products = [
-		{
-			id: 1,
-			name: "Sofa ternyaman",
-			price: 2000000,
-			quantity: 10,
-			totalprice: 20000000,
-		},
-		{
-			id: 2,
-			name: "Apple Watch 4",
-			price: 890000,
-			quantity: 8,
-			totalprice: 7120000,
-		},
-		{
-			id: 3,
-			name: "Mavic Kawe",
-			price: 5030000,
-			quantity: 4,
-			totalprice: 20120000,
-		},
-	];
+  const handleCheckout = () => {
+    Navigate("/checkout");
+    const temp: object[] = [];
+    products.map(async (item: any) => {
+      if (checkout.includes(item.id)) {
+        temp.push(item);
+      }
+    });
+    props.checkout(checkout);
+  };
 
-	const columns = [
-		{
-			dataField: "name",
-			text: "PRODUCT",
-			formatter: IdCell,
-		},
-		{
-			dataField: "price",
-			text: "PRICE",
-			sort: true,
-			formatter: PriceCell,
-		},
-		{
-			dataField: "quantity",
-			text: "QUANTITY",
-			formatter: CountCell,
-		},
-		{
-			dataField: "totalprice",
-			text: "TOTAL",
-			formatter: PriceCell,
-		},
-		{
-			dataField: "link",
-			text: "ACTION",
-			formatter: (rowContent: any, row: any) => {
-				return (
-					<div>
-						<NavLink to={"delete/" + row.id}>
-							<RiDeleteBinLine className="text-dark me-2" size={24} />
-						</NavLink>
-					</div>
-				);
-			},
-		},
-	];
+  const ThousandSeparator = (amount: number) => {
+    if (
+      amount !== undefined ||
+      amount !== 0 ||
+      amount !== "0" ||
+      amount !== null
+    ) {
+      return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    } else {
+      return amount;
+    }
+  };
 
-	const selectRow: any = {
-		mode: "checkbox",
-		clickToSelect: true,
-	};
+  const columns = [
+    {
+      selector: (row: any) => row.id,
+      format: (row: any) => (
+        <input
+          className="form-check-input"
+          type="checkbox"
+          value={row.id}
+          onClick={(e) => handleTotal(e, row.sub_total, row.id)}
+          id="flexCheckDefault"
+        />
+      ),
+    },
+    {
+      selector: (row: any) => row.id,
+      name: "#ID",
+    },
+    {
+      selector: (row: any) => row.product.name,
+      name: "PRODUCT",
+    },
+    {
+      selector: (row: any) => row.product.price,
+      name: "PRICE",
+      sortable: true,
+      format: (row: any) => (
+        <p className="m-0">Rp. {ThousandSeparator(row.product.price)}</p>
+      ),
+    },
+    {
+      selector: (row: any) => row.quantity,
+      name: "QUANTITY",
+    },
+    {
+      selector: (row: any) => row.sub_total,
+      name: "TOTAL",
+      sortable: true,
+      format: (row: any) => (
+        <p className="m-0">Rp. {ThousandSeparator(row.sub_total)}</p>
+      ),
+    },
+    {
+      name: "ACTION",
+      cell: (row: any) => (
+        <RiDeleteBinLine
+          className="text-dark me-2"
+          size={24}
+          style={{ cursor: "pointer" }}
+          onClick={() => handleDelete(row.id)}
+        />
+      ),
+    },
+  ];
 
-	return (
-		<div className="container-fluid">
-			<div className="row">
-				<div className="col">
-					<div className="border rounded">
-						<div className="p-4 d-flex align-items-center">
-							<h5 className="flex-grow-1">Shopping Cart</h5>
-						</div>
-						<BootstrapTable
-							bootstrap4
-							classes="border-white text-center"
-							rowClasses="border-bottom"
-							keyField="id"
-							data={products}
-							columns={columns}
-							selectRow={selectRow}
-							pagination={paginationFactory({
-								sizePerPage: 10,
-								paginationSize: 3,
-								alwaysShowAllBtns: true,
-							})}
-							wrapperClasses="table-responsive"
-						/>
-					</div>
-				</div>
-			</div>
-			<div className="row mt-4 flex-row-reverse ">
-				<div className="col-lg-5 col-12 col-md-12 mt-md-4">
-					<div className="card shopping-cart p-4">
-						<h4 className="product-name">Cart Total</h4>
-						<div className="cart d-flex justify-content-between mt-3">
-							<p className="sub">Subtotal</p>
-							<h6 className="subprice">Rp 1.409.000</h6>
-						</div>
-						<div className="cart d-flex justify-content-between">
-							<p className="sub">Shipping Price</p>
-							<p className="subprice">Free</p>
-						</div>
-						<div className="total d-flex justify-content-between">
-							<p className="total">Total Price</p>
-							<h5 className="total">Rp 1.409.000</h5>
-						</div>
-						<div className="mt-4 text-center">
-							<button className="btn btn-save text-white px-3">
-								Proceed to Checkout
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+  return (
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col">
+          <div className="border rounded">
+            <div className="p-4 d-flex align-items-center">
+              <h5 className="flex-grow-1 m-0">Shopping Cart</h5>
+            </div>
+            <DataTable
+              data={products}
+              columns={columns}
+              pagination
+              progressPending={pending}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="row mt-4 flex-row-reverse ">
+        <div className="col-lg-5 col-12 col-md-12 mt-md-4">
+          <div className="card shopping-cart p-4">
+            <h4 className="product-name">Cart Total</h4>
+            <div className="cart d-flex justify-content-between mt-3">
+              <p className="sub">Subtotal</p>
+              <h6 className="subprice">Rp {ThousandSeparator(total)}</h6>
+            </div>
+            <div className="cart d-flex justify-content-between">
+              <p className="sub">Shipping Price</p>
+              <p className="subprice">Free</p>
+            </div>
+            <div className="total d-flex justify-content-between">
+              <p className="total">Total Price</p>
+              <h5 className="total">Rp {ThousandSeparator(total)}</h5>
+            </div>
+            <div className="mt-4 text-center">
+              <button
+                className="btn btn-save text-white px-3"
+                onClick={handleCheckout}
+              >
+                Proceed to Checkout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Cart;

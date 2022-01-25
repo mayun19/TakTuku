@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { FiMinus, FiPlus } from "react-icons/fi";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import ProductPic from "../../assets/images/product_pic.png";
 
-const ProductDetail = () => {
+const ProductDetail = (props: any) => {
   document.title = "TakTuku - Detail Product ";
   const [product, setProduct] = useState({
     id: 0,
@@ -18,7 +20,9 @@ const ProductDetail = () => {
     name: "",
     email: "",
   });
+  const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
+  const Navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
@@ -31,7 +35,6 @@ const ProductDetail = () => {
         const { data } = res;
         setProduct(data);
         fetchUser(data.id_user);
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -44,11 +47,31 @@ const ProductDetail = () => {
       .then((res) => {
         const { data } = res;
         setUser(data);
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const handleCart = async () => {
+    const body = {
+      id_product: product.id,
+      quantity: quantity,
+      sub_total: quantity * product.price,
+    };
+    await axios
+      .post(`/carts`, body)
+      .then((res) => {
+        Swal.fire("Success!", "Success add to cart.", "success");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleCheckout = () => {
+    Navigate(`/checkout/${id}`);
+    props.quantity(quantity);
   };
 
   const thousandSeparator = (amount: number) => {
@@ -105,8 +128,23 @@ const ProductDetail = () => {
               <div className="row quanti my-2">
                 <p className="stock">{`Stock ${product.quantity}`}</p>
               </div>
-              <button className="btn btn-cart my-3 py-2">Add to Cart</button>
-              <button className="btn btn-co">Checkout</button>
+              <div className="d-flex justify-content-center">
+                <div className="d-flex w-50 qt align-items-center justify-content-between">
+                  <button onClick={() => setQuantity(quantity - 1)}>
+                    <FiMinus />
+                  </button>
+                  <div className="count">{quantity}</div>
+                  <button onClick={() => setQuantity(quantity + 1)}>
+                    <FiPlus />
+                  </button>
+                </div>
+              </div>
+              <button className="btn btn-cart my-3 py-2" onClick={handleCart}>
+                Add to Cart
+              </button>
+              <button className="btn btn-co" onClick={handleCheckout}>
+                Checkout
+              </button>
             </div>
           </div>
         </div>

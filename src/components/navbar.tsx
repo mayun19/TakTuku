@@ -39,11 +39,17 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="nav-item mx-lg-4">
-                <NavLink className="nav-link d-none d-lg-block" to="/">
+                <NavLink
+                  className="nav-link d-none d-lg-block"
+                  to="/account/cart"
+                >
                   <BsBasket3Fill className="fs-4 text-dark" />
                 </NavLink>
-                <NavLink className="nav-link d-block d-lg-none" to="/">
-                  Shopping Card
+                <NavLink
+                  className="nav-link d-block d-lg-none"
+                  to="/account/cart"
+                >
+                  Shopping Cart
                 </NavLink>
               </li>
               <li className="nav-item my-auto py-2 py-lg-0">

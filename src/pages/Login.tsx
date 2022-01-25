@@ -34,7 +34,6 @@ const Login = () => {
         const { data } = res;
         localStorage.setItem("token", JSON.stringify(data.Data));
         dispatch(reduxAction("isLoggedIn", true));
-        console.log(data.Data);
       })
       .catch((err) => {
         setIsInvalid(true);
