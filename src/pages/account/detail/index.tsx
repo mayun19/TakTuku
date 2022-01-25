@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { TextInputAccount } from "../../../components/TextInput";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -16,15 +17,6 @@ type credential = {
 const DetailAccount = () => {
   document.title = "TakTuku - Account Detail ";
 
-  const [user, setUser] = useState({
-    id: "",
-    name: "",
-    email: "",
-    password: "",
-    address: "string",
-    phone_number: "string",
-  });
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,7 +34,6 @@ const DetailAccount = () => {
       .get(`/users/${id}`)
       .then((res) => {
         const { data } = res;
-        setUser(data);
         setName(data.name);
         setEmail(data.email);
         setPhone(data.phone_number);
