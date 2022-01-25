@@ -4,9 +4,29 @@ import logo from "../assets/images/logo.svg";
 import { useSelector } from "react-redux";
 import { RootState } from "../stores/reducers/reducer";
 import { BsBasket3Fill } from "react-icons/bs";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn);
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    await axios
+      .get(`/users/myprofile`)
+      .then((res) => {
+        const { data } = res;
+        setName(data.name);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
@@ -63,7 +83,7 @@ const Navbar = () => {
                   to="/account"
                   className="text-decoration-none text-dark ms-2"
                 >
-                  Hi, customer
+                  Hi, {name.split(" ")[0]}
                 </NavLink>
               </li>
             </ul>

@@ -24,14 +24,9 @@ const ProductDetail = (props: any) => {
   const { id } = useParams();
   const Navigate = useNavigate();
 
-	const [product, setProduct] = useState({
-		id: 0,
-		name: "string",
-		price: 0,
-		quantity: 0,
-		id_category: 0,
-		description: "string",
-	});
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
     await axios
