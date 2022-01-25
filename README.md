@@ -28,6 +28,7 @@ Access our site at https://Taktuku.com
 - React Redux
 - Axios
 - SweetAlert2
+- SCSS
 
 **Prototype:** [Figma](https://www.figma.com/file/apXlAAgloIs3ihTNragJEy/E-Commerce-TakTuku-Sirclo?node-id=0%3A1)
 
@@ -43,8 +44,8 @@ Clone this repo
 Install TakTuku-App with yarn
 
 ```bash
-  yarn install
   cd Week-6_TakTuku-App
+  yarn install
 ```
 
 Runs the app in the development mode.
