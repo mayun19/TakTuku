@@ -14,6 +14,13 @@ Access our site at http://taktuku.surge.sh/
 - Filter Product Category
 - Order Product
 - Shopping Cart
+- 
+**Scope of Problem:**
+- Can't upload photos, everything is still placeholder
+- Category: All, Men, Women, and Kids
+- Can't edit profile, chart, my product
+- No payment status, so it is assumed that the order is always successful
+
 
 ## Built With
 
