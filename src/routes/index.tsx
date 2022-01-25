@@ -37,16 +37,14 @@ const Index = () => {
     setQuantity(data);
   };
 
-  useEffect(() => {
-    const tokenString = localStorage.getItem("token");
-    const userToken = JSON.parse(tokenString || "{}");
-    userToken.token
-      ? dispatch(reduxAction("isLoggedIn", true))
-      : dispatch(reduxAction("isLoggedIn", false));
-    axios.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${userToken.token}`;
-  });
+	useEffect(() => {
+		const tokenString = localStorage.getItem("token");
+		const userToken = JSON.parse(tokenString || "{}");
+		userToken.token
+			? dispatch(reduxAction("isLoggedIn", true))
+			: dispatch(reduxAction("isLoggedIn", false));
+		axios.defaults.headers.common["Authorization"] = `Bearer ${userToken.token}`;
+	});
 
   return (
     <BrowserRouter>

@@ -15,12 +15,12 @@ import axios from "axios";
 axios.defaults.baseURL = "http://54.151.226.92:8080/";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Routes />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById("root")
+	<React.StrictMode>
+		<Provider store={store}>
+			<Routes />
+		</Provider>
+	</React.StrictMode>,
+	document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,87 +1,86 @@
 .btn {
-  border-radius: 6px !important;
+	border-radius: 6px !important;
 }
 
 button.btn-save,
 .btn-save {
-  color: #29a867 !important;
-  font-family: Poppins;
-  font-size: 16px;
-  font-weight: 500;
-  background: #ffffff;
-  border: 1px solid #29a867 !important;
-  box-sizing: border-box;
+	color: #29a867 !important;
+	font-family: Poppins;
+	font-size: 16px;
+	font-weight: 500;
+	background: #ffffff;
+	border: 1px solid #29a867 !important;
+	box-sizing: border-box;
 
-  &:hover {
-    background-color: #29a867;
-    color: #ffffff !important;
-    border: 1px solid #c4c4c4;
-  }
+	&:hover {
+		background-color: #29a867;
+		color: #ffffff !important;
+		border: 1px solid #c4c4c4;
+	}
 }
 
 .btn-shop {
-  font-family: Poppins !important;
-  font-size: 16px !important;
-  color: #0c0d36 !important;
-  background: #f3f3f3 !important;
-  border: 1px solid #0c0d36 !important;
-  font-weight: 500 !important;
+	font-family: Poppins !important;
+	font-size: 16px !important;
+	color: #0c0d36 !important;
+	background: #f3f3f3 !important;
+	border: 1px solid #0c0d36 !important;
+	font-weight: 500 !important;
 
-  &:hover {
-    border: none !important;
-    color: #f3f3f3 !important;
-    background-color: #979797 !important;
-  }
+	&:hover {
+		border: none !important;
+		color: #f3f3f3 !important;
+		background-color: #979797 !important;
+	}
 }
 
 input.form-control,
 .form-select,
 textarea.form-control {
-  font-family: "Poppins";
-  color: #bbbbbb;
-  background-color: #f3f3f3;
-  border: 1px solid #ffffff;
-  border-radius: 8px !important;
+	font-family: "Poppins";
+	background-color: #f3f3f3;
+	border: 1px solid #ffffff;
+	border-radius: 8px !important;
 }
 
 .form-label {
-  font-family: Poppins;
-  font-size: 16px;
-  color: #0c0d36;
+	font-family: Poppins;
+	font-size: 16px;
+	color: #0c0d36;
 }
 
 .qt {
-  max-width: 100%;
-  border: 0.5px solid #979797;
-  border-radius: 6px;
+	max-width: 100%;
+	border: 0.5px solid #979797;
+	border-radius: 6px;
 
-  button {
-    border: none;
-    outline: none;
-    background: none;
-    padding: 0.3rem 1rem;
-  }
+	button {
+		border: none;
+		outline: none;
+		background: none;
+		padding: 0.3rem 1rem;
+	}
 
-  .count {
-    padding: 0.3rem 0;
-  }
+	.count {
+		padding: 0.3rem 0;
+	}
 }
 
 .shopping-cart {
-  p {
-    color: #979797;
-    font-size: 14px;
-  }
+	p {
+		color: #979797;
+		font-size: 14px;
+	}
 
-  h6.subprice {
-    color: #0c0d36;
-  }
+	h6.subprice {
+		color: #0c0d36;
+	}
 
-  .total {
-    font-size: 18px;
-    h5 {
-      font-weight: 500;
-      color: #29a867;
-    }
-  }
+	.total {
+		font-size: 18px;
+		h5 {
+			font-weight: 500;
+			color: #29a867;
+		}
+	}
 }

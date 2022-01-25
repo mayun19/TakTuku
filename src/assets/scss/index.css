@@ -3,7 +3,7 @@
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   font-family: "Poppins" !important;
-  color: #0c0d36;
+  color: #0c0d36 !important;
   font-weight: 400;
   font-size: 16px;
 }
@@ -71,7 +71,7 @@
 
 .register {
   font-family: "Poppins" !important;
-  color: #0c0d36;
+  color: #0c0d36 !important;
   font-weight: 400;
   font-size: 16px;
 }
@@ -112,6 +112,15 @@
   background-color: #f3f3f3;
   color: #28a745 !important;
   border: 1px solid #c4c4c4;
+}
+
+.register .btn-light {
+  color: #bbbbbb;
+}
+
+.register .btn-light:hover {
+  color: #0c0d36;
+  background-color: #e0e0e0;
 }
 
 .home {
@@ -315,7 +324,7 @@ button.btn-save,
   background: #ffffff;
   border: 1px solid #29a867 !important;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 button.btn-save:hover,
@@ -344,7 +353,6 @@ input.form-control,
 .form-select,
 textarea.form-control {
   font-family: "Poppins";
-  color: #bbbbbb;
   background-color: #f3f3f3;
   border: 1px solid #ffffff;
   border-radius: 8px !important;
@@ -354,23 +362,6 @@ textarea.form-control {
   font-family: Poppins;
   font-size: 16px;
   color: #0c0d36;
-}
-
-.total h5 {
-  color: #29a867 !important;
-}
-
-.success {
-  font-family: "Poppins" !important;
-  color: #525252;
-  font-weight: 400;
-  font-size: 16px;
-}
-
-.success h3 {
-  color: #0c0d36;
-  font-size: 36px;
-  font-weight: 500;
 }
 
 .qt {
@@ -408,18 +399,28 @@ textarea.form-control {
   color: #29a867;
 }
 
+.success {
+  font-family: "Poppins" !important;
+  color: #525252;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.success h3 {
+  color: #0c0d36;
+  font-size: 36px;
+  font-weight: 500;
+}
+
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: "Poppins", source-code-pro, Menlo, Monaco, Consolas,
-    "Courier New", monospace;
+  font-family: "Poppins", source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .avatar {
@@ -428,11 +429,11 @@ code {
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   vertical-align: middle;
   margin: 0;
   padding: 0;

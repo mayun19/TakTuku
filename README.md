@@ -1,46 +1,62 @@
-# Getting Started with Create React App
+# TakTuku E-commerce
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+About TakTuku is an E-Commerce App created for the purpose of study.
 
-## Available Scripts
+## Demo
 
-In the project directory, you can run:
+Access our site at https://Taktuku.com
 
-### `yarn start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Register and Login User
+- User Profile
+- Add Product and List of Product
+- Filter Product Category
+- Order Product
+- Shopping Cart
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Built With
 
-### `yarn test`
+- React.js
+- Moment.js
+- TypeScript
+- Bootstrap v5
+- React Bootstrap
+- React Datatables
+- React Icons
+- React Datepicker
+- React Redux
+- Axios
+- SweetAlert2
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Prototype:** [Figma](https://www.figma.com/file/apXlAAgloIs3ihTNragJEy/E-Commerce-TakTuku-Sirclo?node-id=0%3A1)
 
-### `yarn build`
+## 🚀 Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clone this repo
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+  git https://github.com/alta-sirclo-fe-chandra/Week-6_TakTuku-App.git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
 
-### `yarn eject`
+Install TakTuku-App with yarn
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+  yarn install
+  cd Week-6_TakTuku-App
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Runs the app in the development mode.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+  yarn start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Credits
 
-## Learn More
+List of contriubutors:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+👨‍💻 [Chandra Wijaya](https://github.com/atta89)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+👩‍💻 [Mutiara A'yun](https://github.com/mayun19)
