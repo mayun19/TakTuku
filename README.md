@@ -22,6 +22,7 @@ Access our site at http://taktuku.surge.sh/
 - No payment status, so it is assumed that the order is always successful
 - No pagination on the home page
 - Shipping free
+- Cart can't reduce automatically
 
 
 ## Built With
