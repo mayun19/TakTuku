@@ -44,8 +44,8 @@ Clone this repo
 Install TakTuku-App with yarn
 
 ```bash
-  yarn install
   cd Week-6_TakTuku-App
+  yarn install
 ```
 
 Runs the app in the development mode.
