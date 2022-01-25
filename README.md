@@ -20,6 +20,8 @@ Access our site at http://taktuku.surge.sh/
 - Category: All, Men, Women, and Kids
 - Can't edit profile, chart, my product
 - No payment status, so it is assumed that the order is always successful
+- No pagination on the home page
+- Shipping free
 
 
 ## Built With
