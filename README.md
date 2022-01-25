@@ -4,7 +4,7 @@ About TakTuku is an E-Commerce App created for the purpose of study.
 
 ## Demo
 
-Access our site at https://Taktuku.com
+Access our site at http://taktuku.surge.sh/
 
 ## Features
 
