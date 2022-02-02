@@ -34,6 +34,9 @@ const Login = () => {
         const { data } = res;
         localStorage.setItem("token", JSON.stringify(data.Data));
         dispatch(reduxAction("isLoggedIn", true));
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${data.Data.token}`;
       })
       .catch((err) => {
         setIsInvalid(true);

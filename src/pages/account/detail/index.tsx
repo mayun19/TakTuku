@@ -1,29 +1,33 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { TextInputAccount } from "../../../components/TextInput";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import moment from "moment";
 
 type credential = {
   name: string;
   email: string;
-  password: string;
   phone_number: string;
   address: string;
+  password?: string;
+  birth_date?: string;
+  gender?: string;
+  id?: number;
 };
 
 const DetailAccount = () => {
   document.title = "TakTuku - Account Detail ";
 
+  const [data, setData] = useState({});
+  const [id, setId] = useState(0);
   const [name, setName] = useState("");
+  const [birth, setBirth] = useState(new Date());
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const Navigate = useNavigate();
-  const { id } = useParams();
 
   useEffect(() => {
     fetchData();
@@ -31,32 +35,40 @@ const DetailAccount = () => {
 
   const fetchData = async () => {
     await axios
-      .get(`/users/${id}`)
+      .get(`/users/myprofile`)
       .then((res) => {
         const { data } = res;
+        setId(data.id);
         setName(data.name);
         setEmail(data.email);
         setPhone(data.phone_number);
         setAddress(data.address);
-        console.log(data);
+        setBirth(data.birth_date);
+        setData(data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const handleEdit = async (e: any) => {
+  const handleEdit = async (e: FormEvent) => {
     e.preventDefault();
+    const temp: any = data;
+    delete temp["id"];
+    delete temp["photo"];
     await editUser({
+      ...data,
       name: name,
       email: email,
-      password: password,
       phone_number: phone,
       address: address,
+      birth_date: moment(birth).format("YYYY-MM-DD"),
     });
   };
 
   const editUser = async (credential: credential) => {
+    console.log(credential);
+
     await axios
       .put(`/users/${id}`, credential)
       .then((res) => {
@@ -86,31 +98,33 @@ const DetailAccount = () => {
                     <TextInputAccount
                       label="Full Name"
                       type="text"
-                      onChange={(e: any) => setName(e.target.value)}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setName(e.target.value)
+                      }
                       value={name}
                     />
                     <TextInputAccount
                       label="Email Address"
                       type="email"
-                      onChange={(e: any) => setEmail(e.target.value)}
-                      value={email}
-                    />
-                    <TextInputAccount
-                      label="Password"
-                      type="password"
-                      onChange={(e: any) => setPassword(e.target.value)}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setEmail(e.target.value)
+                      }
                       value={email}
                     />
                     <TextInputAccount
                       label="Phone Number"
                       type="text"
-                      onChange={(e: any) => setPhone(e.target.value)}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setPhone(e.target.value)
+                      }
                       value={phone}
                     />
                     <TextInputAccount
                       label="Address"
                       type="text"
-                      onChange={(e: any) => setAddress(e.target.value)}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setAddress(e.target.value)
+                      }
                       placeholder="address"
                       value={address}
                     />

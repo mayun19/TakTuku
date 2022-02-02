@@ -18,8 +18,9 @@ const Transaction = () => {
       .get("/order")
       .then((res) => {
         const { data } = res;
-        setOrder(data);
-        console.log(data);
+        if (data != null) {
+          setOrder(data);
+        }
       })
       .catch((err) => {
         console.log(err);

@@ -10,7 +10,7 @@ import { store } from "./stores";
 import axios from "axios";
 
 // initialize axios
-axios.defaults.baseURL = "http://54.151.226.92:8080/";
+axios.defaults.baseURL = "http://18.139.116.30:8080/";
 
 ReactDOM.render(
   <React.StrictMode>

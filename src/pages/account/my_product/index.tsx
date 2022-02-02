@@ -19,7 +19,9 @@ const Product = () => {
       .get("/products/myproduct")
       .then((res) => {
         const { data } = res;
-        setProducts(data);
+        if (data != null) {
+          setProducts(data);
+        }
       })
       .catch((err) => {
         console.log(err);
