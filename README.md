@@ -47,14 +47,14 @@ Access our site at http://taktuku.surge.sh/
 Clone this repo
 
 ```bash
-  git https://github.com/alta-sirclo-fe-chandra/Week-6_TakTuku-App.git
+  git https://github.com/mayun19/TakTuku.git
 
 ```
 
 Install TakTuku-App with yarn
 
 ```bash
-  cd Week-6_TakTuku-App
+  cd TakTuku
   yarn install
 ```
 
